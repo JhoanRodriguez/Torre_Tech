@@ -1,0 +1,30 @@
+.header {
+    background-color: black;
+    color: #cddc39;
+    text-align: center;
+    margin: 0 auto;
+    font-family: Roboto,Helvetica,Arial,sans-serif;
+    padding-top: 1%;
+}
+.footer {
+    background-color: black;
+    color: white;
+    margin: 0 auto;
+    text-align: left;
+    font-family: Muli,Helvetica,Arial,sans-serif;
+    
+}
+.footer .container{
+    margin-left: 0;
+    padding-bottom: 0;
+}
+.main {
+    background-image: url("https://res.cloudinary.com/torre-technologies-co/image/upload/v1595553170/origin/opportunities/Skeletons/dashboard_background.png");
+    background-color: black;
+    color: white;
+    margin: 0 auto;
+    padding: 5% 5%;
+    text-align: justify;
+    font-family: Roboto,Helvetica,Arial,sans-serif;
+  
+}
