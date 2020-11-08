@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Main extends React.Component {
     constructor(props) {
@@ -16,19 +16,19 @@ class Main extends React.Component {
         const source = `https://torre.bio/api/bios/${this.state.data}`
         var response = await fetch(source)
         response = response.json()
-        this.setState({ response: response, submit: true })
-        this.props.history.push({ pathname: "/resume", data: this.state.response })
+        this.setState({ response: response, submit: true });
     }
 
 
     render() {
 
         return (
+
             <div className="main" >
                 <div class="container">
                     <div class="row">
                         <div class="col">
-                            <img class="image img-fluid" src="https://380342-1192392-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2017/12/recrutamento-e-selecao-696x619.jpg" alt="Girl in a jacket" />
+                            <img className="image img-fluid" src="https://380342-1192392-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2017/12/recrutamento-e-selecao-696x619.jpg" alt="Girl in a jacket" />
                         </div>
                         <div class="col">
                             <p>ID del candidato</p>
@@ -37,20 +37,20 @@ class Main extends React.Component {
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="addon-wrapping">ID</span>
                                     </div>
-                                    <input type="text" onChange={this.HandleChange} class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" />
+                                    <input type="text" onChange={this.HandleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" />
                                 </div>
                                 <br></br>
-
-                                <button type="submit" class="btn btn-primary">Ver Resumé</button>
+                                <Link to="/resume">
+                                    <button type="submit" class="btn btn-primary">Ver Resumé</button></Link>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div >)
+            </div >
+        )
     }
-
 }
 
 
 
-export default withRouter(Main)
+export default Main
