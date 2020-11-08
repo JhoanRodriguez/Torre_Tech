@@ -1,29 +1,56 @@
 import React from 'react'
-
-var source = "https://torre.bio/api/bios/"
+import { Switch, Route, withRouter } from "react-router-dom";
 
 class Main extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { data: null };
+        this.state = { data: '', response: '', submit: false };
     }
-    //componentDidMount() {
-    //fetch(info, { method: "GET" }).then((response) => response.json()).then((response) => {
-    //this.setState({ data: response })
-    //})
-    //}
+
+    HandleChange = (e) => {
+        const username = e.target.value
+        this.setState({ data: username })
+    }
+
+    submit = async (e) => {
+        const source = `https://torre.bio/api/bios/${this.state.data}`
+        var response = await fetch(source)
+        response = response.json()
+        this.setState({ response: response, submit: true })
+        this.props.history.push({ pathname: "/resume", data: this.state.response })
+    }
+
+
     render() {
+
         return (
-            <div className="main">
-                <p>First Test</p>
-                <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <br></br>
+            <div className="main" >
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <img class="image img-fluid" src="https://380342-1192392-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2017/12/recrutamento-e-selecao-696x619.jpg" alt="Girl in a jacket" />
+                        </div>
+                        <div class="col">
+                            <p>ID del candidato</p>
+                            <form onSubmit={this.submit} action="" method="get" className="form">
+                                <div class="input-group flex-nowrap">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="addon-wrapping">ID</span>
+                                    </div>
+                                    <input type="text" onChange={this.HandleChange} class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" />
+                                </div>
+                                <br></br>
+
+                                <button type="submit" class="btn btn-primary">Ver Resumé</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div >)
     }
+
 }
 
-export default Main
+
+
+export default withRouter(Main)
